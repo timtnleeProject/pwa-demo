@@ -1,4 +1,4 @@
-// const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const sourceDir = path.resolve(__dirname, "./src");
@@ -32,14 +32,14 @@ module.exports = {
       template: path.join(sourceDir, "index.html"),
       filename: "index.html",
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "../public"),
-    //       to: distDir,
-    //     },
-    //   ],
-    // }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "./public"),
+          to: distDir,
+        },
+      ],
+    }),
   ],
   devServer: {
     open: true,

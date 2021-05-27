@@ -1,0 +1,21 @@
+{
+  "name": "PWA Demo",
+  "short_name": "PWA Demo",
+  "description": "Progressive Web App Demo",
+  "icons": [
+    {
+      "src": "icons/icon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "skyblue",
+  "background_color": "skyblue"
+}
