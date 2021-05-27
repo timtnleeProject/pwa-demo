@@ -4,8 +4,8 @@
     [
       "@babel/preset-react",
       {
-        "runtime": "automatic" // defaults to classic
-        // "importSource": "custom-jsx-library" // defaults to react (only in automatic runtime)
+        "runtime": "automatic", // defaults to classic
+        "importSource": "@emotion/react"
       }
     ]
   ]
