@@ -12,10 +12,30 @@
       "src": "icons/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "maskable_icon_x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
+  "screenshots": [
+    {
+      "src": "screenshot.webp",
+      "sizes": "407x825",
+      "type": "image/webp"
+    }
+  ],
+  "categories": ["business", "wharever"],
   "start_url": "/",
   "display": "fullscreen",
-  "theme_color": "skyblue",
-  "background_color": "skyblue"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "orientation": "portrait"
 }
