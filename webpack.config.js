@@ -46,5 +46,12 @@ module.exports = {
     contentBase: distDir,
     compress: true,
     port: 9000,
+    proxy: {
+      "/api": {
+        target: "https://pwa-demo-pi.vercel.app",
+        secure: false,
+        changeOrigin: true,
+      },
+    },
   },
 };
