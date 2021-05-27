@@ -19,6 +19,9 @@ function Item({ item }) {
     <div
       css={css`
         flex: 1 1 50%;
+        @media (max-width: 760px) {
+          flex: 1 0 100%;
+        }
         padding: 8px;
         border: 1px solid lightblue;
         .img {
