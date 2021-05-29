@@ -37,6 +37,17 @@
       "type": "image/webp"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Project lists",
+      "url": "/",
+      "description": "List of latest project."
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    }
+  ],
   "categories": ["business", "wharever"],
   "start_url": "/",
   "display": "fullscreen",
