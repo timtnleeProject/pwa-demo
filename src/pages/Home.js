@@ -2,6 +2,38 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import Item, { Wrap } from "../components/Item";
 
+// eslint-disable-next-line react/prop-types
+const Pagination = ({ length, onClick, page }) => (
+  <div
+    css={css`
+      display: flex;
+      justify-content: center;
+    `}
+  >
+    {Array.from(Array(length))
+      .map((_, i) => i + 1)
+      .map((i) => (
+        <button
+          key={i}
+          onClick={() => onClick(i)}
+          css={css`
+            padding: 8px 12px;
+            border: 1px solid skyblue;
+            cursor: pointer;
+            color: skyblue;
+            background-color: white;
+            ${page === i &&
+            css`
+              color: white;
+              background-color: skyblue;
+            `}
+          `}
+        >
+          {i}
+        </button>
+      ))}
+  </div>
+);
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [lists, setLists] = useState([]);
@@ -20,28 +52,7 @@ export default function Home() {
 
   return (
     <>
-      {Array.from(Array(length))
-        .map((_, i) => i + 1)
-        .map((i) => (
-          <button
-            key={i}
-            onClick={() => setPage(i)}
-            css={css`
-              padding: 8px 12px;
-              border: 1px solid skyblue;
-              cursor: pointer;
-              color: skyblue;
-              background-color: white;
-              ${page === i &&
-              css`
-                color: white;
-                background-color: skyblue;
-              `}
-            `}
-          >
-            {i}
-          </button>
-        ))}
+      <Pagination length={length} page={page} onClick={(i) => setPage(i)} />
       <Wrap
         css={css`
           margin-top: 12px;
@@ -51,6 +62,7 @@ export default function Home() {
           <Item key={i} item={item} />
         ))}
       </Wrap>
+      <Pagination length={length} page={page} onClick={(i) => setPage(i)} />
       {loading && (
         <div
           css={css`
