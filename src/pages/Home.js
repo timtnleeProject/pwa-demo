@@ -47,6 +47,9 @@ export default function Home() {
         setLists(res.data);
         setLength(res.length);
         setLoading(false);
+        window.scrollTo({
+          top: 0,
+        });
       });
   }, [page]);
 
