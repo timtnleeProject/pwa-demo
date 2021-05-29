@@ -9,6 +9,11 @@
       "type": "image/png"
     },
     {
+      "src": "icons/icon_x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
       "src": "icons/icon_x128.png",
       "sizes": "128x128",
       "type": "image/png"
@@ -41,11 +46,25 @@
     {
       "name": "Project lists",
       "url": "/",
-      "description": "List of latest project."
+      "description": "List of latest project.",
+      "icons": [
+        {
+          "src": "icons/home-icon_x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "About",
-      "url": "/about"
+      "url": "/about",
+      "icons": [
+        {
+          "src": "icons/about-icon_x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "categories": ["business", "wharever"],
