@@ -46,6 +46,9 @@ module.exports = {
     contentBase: distDir,
     compress: true,
     port: 9000,
+    historyApiFallback: {
+      index: "index.html",
+    },
     proxy: {
       "/api": {
         target: "https://pwa-demo-pi.vercel.app",

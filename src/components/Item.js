@@ -18,12 +18,15 @@ function Item({ item }) {
   return (
     <div
       css={css`
-        flex: 1 1 50%;
+        flex: 1 1 calc(50% - 8px);
+        &:nth-of-type(odd) {
+          margin-right: 8px;
+        }
         @media (max-width: 760px) {
           flex: 1 0 100%;
         }
-        padding: 8px;
-        border: 1px solid lightblue;
+        margin-bottom: 8px;
+        border: 1px solid skyblue;
         .img {
           background-image: url(${item.image});
           background-size: cover;
@@ -34,7 +37,8 @@ function Item({ item }) {
         }
         .title {
           font-weight: bold;
-          font-size: 1.5rem;
+          font-size: 1.3rem;
+          padding: 8px;
         }
       `}
     >
