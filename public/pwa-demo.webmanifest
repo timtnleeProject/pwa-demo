@@ -27,8 +27,13 @@
   ],
   "screenshots": [
     {
-      "src": "screenshot.webp",
-      "sizes": "407x825",
+      "src": "screenshots/screenshot_1.webp",
+      "sizes": "414x739",
+      "type": "image/webp"
+    },
+    {
+      "src": "screenshots/screenshot_2.webp",
+      "sizes": "413x741",
       "type": "image/webp"
     }
   ],
