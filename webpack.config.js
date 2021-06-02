@@ -1,5 +1,6 @@
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WebpackAssetsManifest = require("webpack-assets-manifest");
 const path = require("path");
 const sourceDir = path.resolve(__dirname, "./src");
 const distDir = path.resolve(__dirname, "./dist");
@@ -8,7 +9,7 @@ module.exports = {
   context: sourceDir,
   entry: "./index.js",
   output: {
-    filename: "main.js",
+    filename: "main.[hash].js",
     path: distDir,
     clean: true,
   },
@@ -39,6 +40,9 @@ module.exports = {
           to: distDir,
         },
       ],
+    }),
+    new WebpackAssetsManifest({
+      // Options go here
     }),
   ],
   devServer: {
