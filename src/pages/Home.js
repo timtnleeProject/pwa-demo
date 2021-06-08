@@ -39,7 +39,9 @@ export default function Home() {
   const [lists, setLists] = useState([]);
   const [length, setLength] = useState(0);
   const [page, setPage] = useState(1);
+  const [error, setError] = useState(null);
   useEffect(() => {
+    setError(null);
     setLoading(true);
     fetch(`/api/list?page=${page}`)
       .then((res) => res.json())
@@ -50,6 +52,10 @@ export default function Home() {
         window.scrollTo({
           top: 0,
         });
+      })
+      .catch(() => {
+        setLists([]);
+        setError("Something wrong, please try it later.");
       });
   }, [page]);
 
@@ -61,6 +67,7 @@ export default function Home() {
           margin-top: 12px;
         `}
       >
+        {error}
         {lists.map((item, i) => (
           <Item key={i} item={item} />
         ))}

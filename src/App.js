@@ -1,10 +1,18 @@
 import { css } from "@emotion/react";
 import { BrowserRouter, Link } from "react-router-dom";
+import OfflineWarning from "./components/OfflineWarning";
 import Routes from "./Routes";
 
 const App = () => {
   return (
     <div>
+      <OfflineWarning
+        css={css`
+          position: sticky;
+          top: 0;
+          z-index: 99;
+        `}
+      />
       <header
         css={css`
           padding: 12px;

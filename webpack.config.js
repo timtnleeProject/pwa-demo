@@ -39,7 +39,6 @@ module.exports = {
           from: path.resolve(__dirname, "./public"),
           to: distDir,
           filter: (resourcePath) => {
-            console.log(resourcePath);
             return !resourcePath.match(/sw.js/);
           },
         },
