@@ -1,4 +1,4 @@
-const version = "v1";
+const version = "#{version}";
 const CACHE_NAME = "pwa-demo-cache-" + version;
 
 self.addEventListener("install", function (event) {

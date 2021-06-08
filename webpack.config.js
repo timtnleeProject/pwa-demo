@@ -38,6 +38,19 @@ module.exports = {
         {
           from: path.resolve(__dirname, "./public"),
           to: distDir,
+          filter: (resourcePath) => {
+            console.log(resourcePath);
+            return !resourcePath.match(/sw.js/);
+          },
+        },
+        // Update sw cache name version on build
+        {
+          from: path.resolve(__dirname, "./public/sw.js"),
+          to: path.resolve(distDir, "./sw.js"),
+          transform(content) {
+            const string = content.toString();
+            return string.replace(/#{version}/, new Date().getTime());
+          },
         },
       ],
     }),
