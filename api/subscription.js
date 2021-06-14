@@ -15,7 +15,7 @@ webpush.setVapidDetails(
 );
 
 const pushMessageLater = (subscription) => {
-  if (!subs.find((s) => s === subscription)) {
+  if (!subs.find((s) => s.endpoint === subscription.endpoint)) {
     subs.push(subscription);
   }
   return Promise.allSettled(
