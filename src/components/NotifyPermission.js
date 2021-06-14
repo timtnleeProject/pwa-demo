@@ -36,35 +36,37 @@ export default memo(function NotifyPermission() {
       Notification.permission !== "granted"
   );
   const [cover, setCover] = useState(false);
+
+  const subscribe = () => {
+    return navigator.serviceWorker.register("/sw.js").then((registration) => {
+      if (!registration.active) return registration;
+      // subscribe user
+      const subscribeOptions = {
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(
+          "BBLWcX2o9qUk1S5cS_58QK-B7hjw6yf-rrLrqRpi_z9S0OgaoUD9Y2bZI9ZThMfcu6YBSXkNVPKH2Mx2QThnUzQ"
+        ),
+      };
+      return registration.pushManager
+        .subscribe(subscribeOptions)
+        .then((pushSubscription) => {
+          console.log(
+            "Received PushSubscription: ",
+            JSON.stringify(pushSubscription)
+          );
+          return fetch("/api/subscription/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(pushSubscription),
+          });
+        });
+    });
+  };
   const grantPermission = () => {
     setCover(true);
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        if (!registration.active) return registration;
-        // subscribe user
-        const subscribeOptions = {
-          userVisibleOnly: true,
-          applicationServerKey: urlBase64ToUint8Array(
-            "BBLWcX2o9qUk1S5cS_58QK-B7hjw6yf-rrLrqRpi_z9S0OgaoUD9Y2bZI9ZThMfcu6YBSXkNVPKH2Mx2QThnUzQ"
-          ),
-        };
-        return registration.pushManager
-          .subscribe(subscribeOptions)
-          .then((pushSubscription) => {
-            console.log(
-              "Received PushSubscription: ",
-              JSON.stringify(pushSubscription)
-            );
-            return fetch("/api/subscription/", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(pushSubscription),
-            });
-          });
-      })
+    subscribe()
       .then(() => {
         setDisplay(false);
       })
@@ -75,6 +77,13 @@ export default memo(function NotifyPermission() {
         setCover(false);
       });
   };
+
+  useEffect(() => {
+   if (Notification.permission === "granted") {
+     subscribe();
+   }
+  }, []])
+
   return display ? (
     <div
       css={css`
