@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function Admin() {
   const [message, setMessage] = useState("");
   const notify = () => {
-    fetch("/api/message/", {
+    fetch("/api/subscription/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
