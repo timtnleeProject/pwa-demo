@@ -17,10 +17,11 @@ const pushMessageLater = (subscription) =>
     setTimeout(() => {
       webpush.sendNotification(subscription, "Message from server!");
       resolve();
-    }, 3000);
+    }, 10000);
   });
 
 export default (req, res) => {
   const subscription = req.body;
-  return pushMessageLater(subscription).then(() => res.json(vapidKeys));
+  pushMessageLater(subscription);
+  res.json(vapidKeys);
 };
