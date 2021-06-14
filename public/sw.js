@@ -35,6 +35,7 @@ self.addEventListener("fetch", function (event) {
       return fetch(event.request)
         .then(function (response) {
           if (
+            event.request.method !== "GET" ||
             !response ||
             response.status !== 200 ||
             response.type !== "basic"
