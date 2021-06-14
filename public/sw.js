@@ -16,7 +16,7 @@ self.addEventListener("install", function (event) {
           console.log("[ADD CACHES]: ", list);
           return cache.addAll(list);
         })
-        .then(() => event.skipWaiting())
+        .then(() => self.skipWaiting())
         .catch((e) => {
           console.log("cannot get assets manifest", e);
         });
