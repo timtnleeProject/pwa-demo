@@ -7,19 +7,20 @@ const vapidKeys = {
 };
 
 webpush.setVapidDetails(
-  "mailto:web-push-book@gauntface.com",
+  "mailto:litingen1995@gmail.com",
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
 
-const pushMessageLater = (subscription) => {
-  setTimeout(() => {
-    webpush.sendNotification(subscription, "Message from server!");
-  }, 10000);
-};
+const pushMessageLater = (subscription) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      webpush.sendNotification(subscription, "Message from server!");
+      resolve();
+    }, 3000);
+  });
 
 export default (req, res) => {
   const subscription = req.body;
-  pushMessageLater(subscription);
-  res.json(subscription);
+  return pushMessageLater(subscription).then(() => res.json(vapidKeys));
 };
