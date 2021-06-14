@@ -20,8 +20,8 @@ const pushMessageLater = (subscription) =>
     }, 10000);
   });
 
-export default (req, res) => {
+export default async (req, res) => {
   const subscription = req.body;
-  pushMessageLater(subscription);
+  await pushMessageLater(subscription);
   res.json(vapidKeys);
 };
