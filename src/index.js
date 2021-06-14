@@ -24,6 +24,7 @@ if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     .register("/sw.js")
     .then((registration) => {
       console.log(`Register sw. Scope is ${registration.scope}`);
+      if (!registration.active) return registration;
       // subscribe user
       const subscribeOptions = {
         userVisibleOnly: true,
@@ -31,21 +32,21 @@ if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
           "BBLWcX2o9qUk1S5cS_58QK-B7hjw6yf-rrLrqRpi_z9S0OgaoUD9Y2bZI9ZThMfcu6YBSXkNVPKH2Mx2QThnUzQ"
         ),
       };
-
-      return registration.pushManager.subscribe(subscribeOptions);
-    })
-    .then((pushSubscription) => {
-      console.log(
-        "Received PushSubscription: ",
-        JSON.stringify(pushSubscription)
-      );
-      return fetch("/api/subscription/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(pushSubscription),
-      });
+      return registration.pushManager
+        .subscribe(subscribeOptions)
+        .then((pushSubscription) => {
+          console.log(
+            "Received PushSubscription: ",
+            JSON.stringify(pushSubscription)
+          );
+          return fetch("/api/subscription/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(pushSubscription),
+          });
+        });
     })
     .catch((err) => {
       console.log(`Fail: ${err}`);
