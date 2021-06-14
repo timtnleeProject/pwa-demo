@@ -24,14 +24,14 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("fetch", function (event) {
-  console.log(`[FETCH EVENT FIRES: ${event.request.url}]`);
+  // console.log(`[FETCH EVENT FIRES: ${event.request.url}]`);
   event.respondWith(
     caches.match(event.request).then(function (response) {
       if (response) {
-        console.log(`[RETURN FROM CACHE ${event.request.url}]`);
+        // console.log(`[RETURN FROM CACHE ${event.request.url}]`);
         return response;
       }
-      console.log(`[FETCH ${event.request.url}]`);
+      // console.log(`[FETCH ${event.request.url}]`);
       return fetch(event.request)
         .then(function (response) {
           if (

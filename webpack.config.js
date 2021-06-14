@@ -62,8 +62,9 @@ module.exports = {
     contentBase: distDir,
     compress: true,
     port: 9000,
+    host: "127.0.0.1",
     historyApiFallback: {
-      index: "index.html",
+      index: "/",
     },
     proxy: {
       "/api": {
