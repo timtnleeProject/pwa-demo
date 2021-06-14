@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import Item, { Wrap } from "../components/Item";
+import NotifyPermission from "../components/NotifyPermission";
 
 // eslint-disable-next-line react/prop-types
 const Pagination = ({ length, onClick, page }) => (
@@ -59,31 +60,8 @@ export default function Home() {
       });
   }, [page]);
 
-  const [permission, _setPermission] = useState(true);
-  const setPermission = (permission) =>
-    _setPermission(permission === "granted");
-  useEffect(() => {
-    setPermission(Notification.permission);
-  }, []);
-
-  const notify = () => {
-    Notification.requestPermission().then(function (permission) {
-      // If the user accepts, let's create a notification
-      setPermission(permission);
-      if (permission === "granted") {
-        // eslint-disable-next-line no-new
-        new Notification("See what's new!", {
-          body: "Explore thousands of latest projects",
-          icon: "/icons/icon_x96.png",
-        });
-      }
-    });
-  };
-
   return (
     <>
-      {!permission && "Your notification is disabled"}
-      <button onClick={notify}>Send Notification</button>
       <Pagination length={length} page={page} onClick={(i) => setPage(i)} />
       <Wrap
         css={css`
@@ -113,6 +91,7 @@ export default function Home() {
           LOADING...
         </div>
       )}
+      <NotifyPermission />
     </>
   );
 }
