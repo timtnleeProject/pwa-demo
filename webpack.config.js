@@ -68,7 +68,8 @@ module.exports = {
     },
     proxy: {
       "/api": {
-        target: "https://pwa-demo-pi.vercel.app",
+        target:
+          "https://pwa-demo-git-setupserviceworker-timtnleeproject.vercel.app/",
         secure: false,
         changeOrigin: true,
       },
