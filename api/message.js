@@ -27,6 +27,11 @@ const sendMessages = (message) =>
 
 export default async (req, res) => {
   const message = req.body.message;
-  await sendMessages(message);
+  try {
+    await sendMessages(message);
+  } catch (error) {
+    res.json(error.message);
+  }
+
   res.json({ success: true });
 };
