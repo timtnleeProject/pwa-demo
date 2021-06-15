@@ -33,7 +33,7 @@ export default memo(function NotifyPermission() {
   const [display, setDisplay] = useState(
     "PushManager" in window &&
       "serviceWorker" in navigator &&
-      Notification.permission !== "granted"
+      Notification?.permission !== "granted"
   );
   const [cover, setCover] = useState(false);
 
@@ -79,7 +79,7 @@ export default memo(function NotifyPermission() {
   };
 
   useEffect(() => {
-    if (Notification.permission === "granted") {
+    if (Notification?.permission === "granted") {
       subscribe();
     }
   }, []);

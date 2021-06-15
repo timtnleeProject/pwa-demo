@@ -49,7 +49,6 @@ export default function Home() {
       .then((res) => {
         setLists(res.data);
         setLength(res.length);
-        setLoading(false);
         window.scrollTo({
           top: 0,
         });
@@ -57,6 +56,9 @@ export default function Home() {
       .catch(() => {
         setLists([]);
         setError("Something wrong, please try it later.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [page]);
 
