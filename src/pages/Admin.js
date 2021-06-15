@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function Admin() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [icon, seticon] = useState("icons/icon_x96.png");
   const [url, seturl] = useState("");
   const [loading, setloading] = useState(false);
   const notify = () => {
@@ -12,7 +13,7 @@ export default function Admin() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, body, data: { url } }),
+      body: JSON.stringify({ title, body, icon, data: { url } }),
     }).finally(() => {
       setloading(false);
     });
@@ -27,6 +28,11 @@ export default function Admin() {
       <div>
         Body:
         <input value={body} onChange={(e) => setBody(e.target.value)}></input>
+      </div>
+
+      <div>
+        Icon:
+        <input value={icon} onChange={(e) => seticon(e.target.value)}></input>
       </div>
 
       <div>
