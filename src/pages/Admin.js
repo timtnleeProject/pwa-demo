@@ -1,24 +1,36 @@
 import { useState } from "react";
 
 export default function Admin() {
-  const [message, setMessage] = useState("");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [loading, setloading] = useState(false);
   const notify = () => {
+    setloading(true);
     fetch("/api/subscription/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ title, body }),
+    }).finally(() => {
+      setloading(false);
     });
   };
   return (
     <div>
-      Message:
-      <input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      ></input>
-      <button onClick={notify}>Send</button>
+      <div>
+        Title:
+        <input value={title} onChange={(e) => setTitle(e.target.value)}></input>
+      </div>
+
+      <div>
+        Body:
+        <input value={body} onChange={(e) => setBody(e.target.value)}></input>
+      </div>
+
+      <button onClick={notify} disabled={!title || loading}>
+        Send
+      </button>
     </div>
   );
 }

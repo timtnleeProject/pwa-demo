@@ -78,7 +78,12 @@ self.addEventListener("activate", function (event) {
 });
 
 self.addEventListener("push", function (event) {
-  const promiseChain = self.registration.showNotification(event.data.text());
+  const options = event.data.json();
+  const { title, ...rest } = options;
+  const promiseChain = self.registration.showNotification(title, {
+    icon: "icons/icon_x96.png",
+    ...rest,
+  });
 
   event.waitUntil(promiseChain);
 });

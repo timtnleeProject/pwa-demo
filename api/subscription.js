@@ -24,9 +24,9 @@ const saveSubscription = (subscription) => {
 };
 
 export default async (req, res) => {
-  const message = req.body.message;
-  if (message) {
-    await sendMessages(message);
+  const title = req.body.title;
+  if (title) {
+    await sendMessages(req.body);
     console.log(subs);
     res.json({ success: true });
     return;
