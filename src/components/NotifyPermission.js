@@ -29,7 +29,7 @@ const Btn = (props) => (
   ></button>
 );
 
-export default memo(function NotifyPermission() {
+function NotifyPermission() {
   const [display, setDisplay] = useState(
     "PushManager" in window &&
       "serviceWorker" in navigator &&
@@ -128,4 +128,10 @@ export default memo(function NotifyPermission() {
       )}
     </div>
   ) : null;
-});
+}
+
+const AppleSucks = () => {
+  return "Notification" in window ? <NotifyPermission /> : null;
+};
+
+export default memo(AppleSucks);
