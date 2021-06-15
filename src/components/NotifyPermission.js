@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -38,7 +38,7 @@ export default memo(function NotifyPermission() {
   const [cover, setCover] = useState(false);
 
   const subscribe = () => {
-    return navigator.serviceWorker.register("/sw.js").then((registration) => {
+    return navigator.serviceWorker.ready.then((registration) => {
       if (!registration.active) return registration;
       // subscribe user
       const subscribeOptions = {
@@ -79,10 +79,10 @@ export default memo(function NotifyPermission() {
   };
 
   useEffect(() => {
-   if (Notification.permission === "granted") {
-     subscribe();
-   }
-  }, []])
+    if (Notification.permission === "granted") {
+      subscribe();
+    }
+  }, []);
 
   return display ? (
     <div
