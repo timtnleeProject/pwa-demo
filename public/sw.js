@@ -90,3 +90,14 @@ self.addEventListener("push", function (event) {
 
   event.waitUntil(promiseChain);
 });
+
+self.addEventListener("notificationclick", function (event) {
+  const clickedNotification = event.notification;
+  clickedNotification.close();
+
+  // Do something as the result of the notification click
+  const url = clickedNotification.data?.url;
+  if (url) {
+    event.waitUntil(self.clients.openWindow(url));
+  }
+});
