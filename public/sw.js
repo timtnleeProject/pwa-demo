@@ -44,10 +44,14 @@ self.addEventListener("fetch", function (event) {
             return response;
           }
           const cloneResponse = response.clone();
-          caches.open(CACHE_NAME).then(function (cache) {
-            cache.put(event.request, cloneResponse);
-          });
-          return response;
+          return caches
+            .open(CACHE_NAME)
+            .then(function (cache) {
+              return cache.put(event.request, cloneResponse);
+            })
+            .then(function () {
+              return response;
+            });
         })
         .catch(function () {});
     })
