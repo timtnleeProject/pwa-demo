@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import { BrowserRouter, Link } from "react-router-dom";
 import OfflineWarning from "./components/OfflineWarning";
 import Routes from "./Routes";
+import NotifyPermission from "./components/NotifyPermission";
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
       >
         <Routes />
       </main>
+      <NotifyPermission />
     </div>
   );
 };
