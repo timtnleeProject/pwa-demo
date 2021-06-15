@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import Item, { Wrap } from "../components/Item";
-import NotifyPermission from "../components/NotifyPermission";
 
 // eslint-disable-next-line react/prop-types
 const Pagination = ({ length, onClick, page }) => (
@@ -93,7 +92,6 @@ export default function Home() {
           LOADING...
         </div>
       )}
-      <NotifyPermission />
     </>
   );
 }
