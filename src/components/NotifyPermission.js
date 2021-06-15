@@ -30,10 +30,12 @@ const Btn = (props) => (
 );
 
 function NotifyPermission() {
+  const noNotidication = !("Notification" in window);
+
   const [display, setDisplay] = useState(
     "PushManager" in window &&
       "serviceWorker" in navigator &&
-      Notification?.permission !== "granted"
+      (noNotidication || window.Notification?.permission !== "granted")
   );
   const [cover, setCover] = useState(false);
 
@@ -79,7 +81,7 @@ function NotifyPermission() {
   };
 
   useEffect(() => {
-    if (Notification?.permission === "granted") {
+    if (noNotidication || window.Notification?.permission === "granted") {
       subscribe();
     }
   }, []);
@@ -111,7 +113,7 @@ function NotifyPermission() {
           `}
         ></div>
       )}
-      {Notification.permission === "denied" ? (
+      {window.Notification?.permission === "denied" ? (
         <>
           <div>
             You have blocked notification from PWA-DEMO, please go to browser
@@ -130,8 +132,8 @@ function NotifyPermission() {
   ) : null;
 }
 
-const AppleSucks = () => {
-  return "Notification" in window ? <NotifyPermission /> : null;
-};
+// const AppleSucks = () => {
+//   return "Notification" in window ? <NotifyPermission /> : null;
+// };
 
-export default memo(AppleSucks);
+export default memo(NotifyPermission);
