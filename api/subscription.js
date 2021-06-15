@@ -14,8 +14,10 @@ webpush.setVapidDetails(
   vapidKeys.privateKey
 );
 
-const sendMessages = (message) =>
-  Promise.allSettled(subs.map((s) => webpush.sendNotification(s, message)));
+const sendMessages = (body) =>
+  Promise.allSettled(
+    subs.map((s) => webpush.sendNotification(s, JSON.stringify(body)))
+  );
 
 const saveSubscription = (subscription) => {
   if (!subs.find((s) => s.endpoint === subscription.endpoint)) {
