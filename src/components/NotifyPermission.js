@@ -41,7 +41,6 @@ function NotifyPermission() {
 
   const subscribe = () => {
     return navigator.serviceWorker.ready.then((registration) => {
-      if (!registration.active) return registration;
       // subscribe user
       const subscribeOptions = {
         userVisibleOnly: true,

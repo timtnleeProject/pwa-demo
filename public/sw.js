@@ -97,3 +97,14 @@ self.addEventListener("notificationclick", function (event) {
     event.waitUntil(self.clients.openWindow(url));
   }
 });
+
+self.addEventListener("sync", function (event) {
+  if (event.tag === "notify") {
+    event.waitUntil(
+      self.registration.showNotification("Background Sync", {
+        icon: "icons/icon_x96.png",
+      })
+    );
+  }
+  console.log("SYNC", event);
+});

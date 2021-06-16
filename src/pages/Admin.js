@@ -18,6 +18,12 @@ export default function Admin() {
       setloading(false);
     });
   };
+
+  const bgSync = () => {
+    navigator.serviceWorker.ready.then((registration) =>
+      registration.sync.register("notify")
+    );
+  };
   return (
     <div>
       <div>
@@ -43,6 +49,10 @@ export default function Admin() {
       <button onClick={notify} disabled={!title || loading}>
         Send
       </button>
+
+      <br />
+
+      <button onClick={bgSync}>Background Sync</button>
     </div>
   );
 }
