@@ -16,7 +16,6 @@ self.addEventListener("install", function (event) {
           console.log("[ADD CACHES]: ", list);
           return cache.addAll(list);
         })
-        .then(() => self.skipWaiting())
         .catch((e) => {
           console.log("cannot get assets manifest", e);
         });
@@ -63,20 +62,17 @@ self.addEventListener("activate", function (event) {
   const cacheAllowlist = [CACHE_NAME];
 
   event.waitUntil(
-    caches
-      .keys()
-      .then(function (cacheNames) {
-        return Promise.all(
-          cacheNames.map(function (cacheName) {
-            if (cacheAllowlist.indexOf(cacheName) === -1) {
-              console.log(`[CLEAR CACHE ${cacheName}]`);
-              return caches.delete(cacheName);
-            }
-            return Promise.resolve();
-          })
-        );
-      })
-      .then(() => self.clients.claim())
+    caches.keys().then(function (cacheNames) {
+      return Promise.all(
+        cacheNames.map(function (cacheName) {
+          if (cacheAllowlist.indexOf(cacheName) === -1) {
+            console.log(`[CLEAR CACHE ${cacheName}]`);
+            return caches.delete(cacheName);
+          }
+          return Promise.resolve();
+        })
+      );
+    })
   );
 });
 
