@@ -65,6 +65,17 @@
           "type": "image/png"
         }
       ]
+    },
+    {
+      "name": "Admin",
+      "url": "/admin",
+      "icons": [
+        {
+          "src": "icons/setting-icon_x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     }
   ],
   "categories": ["business", "wharever"],
