@@ -10,9 +10,11 @@ self.addEventListener("install", function (event) {
           return response.json();
         })
         .then(function (assets) {
-          const list = Object.values(assets).filter(
-            (path) => !path.match(/(images\/)|(icons\/)|(screenshots\/)/)
-          );
+          const list = Object.values(assets)
+            .filter(
+              (path) => !path.match(/(images\/)|(icons\/)|(screenshots\/)/)
+            )
+            .concat(["/about", "/admin"]);
           console.log("[ADD CACHES]: ", list);
           return cache.addAll(list);
         })
