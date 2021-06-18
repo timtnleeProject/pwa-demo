@@ -3,6 +3,7 @@ const CACHE_NAME = "pwa-demo-cache-" + version;
 
 self.addEventListener("install", function (event) {
   console.log("[INSTALL SW]");
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return fetch("/assets-manifest.json")
