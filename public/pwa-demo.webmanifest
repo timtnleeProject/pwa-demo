@@ -19,6 +19,11 @@
       "type": "image/png"
     },
     {
+      "src": "icons/icon_x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
       "src": "icons/icon_x512.png",
       "sizes": "512x512",
       "type": "image/png"
